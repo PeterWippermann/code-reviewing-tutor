@@ -22,7 +22,6 @@ CoRT aims to bring those learning opportunities back.
 
 Rather than replacing AI, CoRT complements it by helping developers understand the code changes AI produced and by turning those changes into personalized learning experiences.
 
-
 ---
 
 # How CoRT Works
@@ -44,13 +43,22 @@ In practice, CoRT:
 
 The goal is not only to explain what the code does, but to help developers build the knowledge and intuition to work with it confidently in the future.
 
-
-
 ---
 
 # Installation
 
-> **Coming soon**
+## Installation as a Personal Skill
 
-Installation instructions will be added once the first public version is available.
+If you want CoRT to be available in all local projects, you can install it as a personal skill.
 
+On Windows, the target directory is:
+
+```text
+%USERPROFILE%\.copilot\skills\code-reviewing-tutor\SKILL.md
+```
+
+On Linux, the equivalent path is:
+
+```text
+~/.copilot/skills/code-reviewing-tutor/SKILL.md
+```
