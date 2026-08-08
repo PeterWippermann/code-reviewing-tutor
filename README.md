@@ -2,7 +2,7 @@
 
 > **Keeping learning on the job alive in the age of AI.**
 
-CoRT is an IDE-based learning tutor that helps developers understand AI-generated code changes and turn them into deeper engineering knowledge.
+CoRT is an IDE-based learning tutor that helps developers understand their AI-generated code changes and turn these changes into deeper engineering knowledge.
 
 CoRT’s primary goal is to **help developers learn their craft**.
 
@@ -10,17 +10,15 @@ CoRT’s primary goal is to **help developers learn their craft**.
 
 # Vision
 
-For decades, software developers learned primarily **on the job**.
+For decades, software developers **learned primarily on the job**.
 
 They implemented features, made mistakes, compared solutions, received feedback, and gradually developed engineering intuition through day-to-day work.
 
 AI-assisted development changes this process fundamentally.
 
-Today, AI can generate large parts of an implementation, explain APIs, write tests, and support pull request workflows. This dramatically increases productivity, but it can also reduce the learning opportunities that naturally came from working through code changes yourself.
+Today, AI can generate large parts of an implementation, explain APIs, write tests, and support pull request workflows. This increases productivity, but it can also reduce the learning opportunities that naturally came from working through code changes yourself.
 
-CoRT aims to bring those learning opportunities back.
-
-Rather than replacing AI, CoRT complements it by helping developers understand the code changes AI produced and by turning those changes into personalized learning experiences.
+CoRT aims to bring those learning opportunities back. It helps developers understand the code changes AI produced and turns those changes into personalized learning experiences.
 
 ---
 
@@ -54,11 +52,11 @@ If you want CoRT to be available in all local projects, you can install it as a 
 On Windows, the target directory is:
 
 ```text
-%USERPROFILE%\.copilot\skills\code-reviewing-tutor\SKILL.md
+%USERPROFILE%\.copilot\skills\code-reviewing-tutor\
 ```
 
 On Linux, the equivalent path is:
 
 ```text
-~/.copilot/skills/code-reviewing-tutor/SKILL.md
+~/.copilot/skills/code-reviewing-tutor/
 ```
