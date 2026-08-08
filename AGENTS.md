@@ -8,7 +8,7 @@ These instructions apply to this directory and all of its subdirectories. A nest
 
 This repository develops the **CoRT (Code-reviewing Tutor)** MVP for onboarding new joiners.
 
-Despite its product name, the coach does not review code or pull requests. It uses good, functional, often AI-generated code as learning material and asks new joiners targeted understanding questions in the IDE, especially VS Code. Its purpose is to help learners explain control flow, data flow, contracts, abstractions, framework mechanisms, tests, and design decisions—not to judge or change code.
+Despite its product name, the coach does not review code or pull requests. It uses good, functional, often AI-generated code as learning material and asks new joiners targeted understanding questions in their IDE. Its purpose is to help learners explain control flow, data flow, contracts, abstractions, framework mechanisms, tests, and design decisions—not to judge or change code.
 
 ## Authoritative sources
 
@@ -26,7 +26,7 @@ Direct user or system instructions override this file. For product behavior, `SK
 - Treat existing functional code as learning material and normally assume AI-generated code is correct and appropriate.
 - Do not create code/PR reviews, comments, findings, severities, issue lists, quality assessments, merge recommendations, or production-release decisions.
 - Do not systematically search for bugs, weaknesses, risks, or code smells; do not propose unsolicited refactorings, improvements, or replacement implementations.
-- Treat the IDE, especially VS Code, as the primary product surface.
+- Treat the IDE as the primary product surface.
 - Ask exactly one central understanding question at a time, grounded in concrete code, data/control flow, contracts, or framework behavior.
 - Prefer relevant objectives from `references/curriculum.md` without forcing an unsuitable objective. Update each objective monotonically after a qualified answer and never revisit an objective at `4/4 – understood and transferred` in later sessions.
 - Use `references/curriculum.md` as the living record of objectives and aggregated understanding status. It must not contain answers, snippets, customer data, or conversation history.
@@ -46,9 +46,9 @@ Do not add, without a new product decision: an architecture/planning coach, impl
 
 Make the smallest traceable change that fully achieves the requested product outcome. Follow existing repository conventions; do not introduce dependency changes, architectural rewrites, or abstractions without a concrete variation or testing need.
 
-Keep these concerns separate where the architecture permits: IDE/file/Git context; control- and data-flow reconstruction; learning-objective selection and curriculum lookup; one-question generation; answer evaluation and calibration; monotonic learning-progress persistence; output formatting; provider/model integration; and telemetry/persistence. Do not hide product rules such as “one question at a time” or “consider the curriculum” in VS-Code-specific UI logic.
+Keep these concerns separate where the architecture permits: IDE/file/Git context; control- and data-flow reconstruction; learning-objective selection and curriculum lookup; one-question generation; answer evaluation and calibration; monotonic learning-progress persistence; output formatting; provider/model integration; and telemetry/persistence. Do not hide product rules such as “one question at a time” or “consider the curriculum” in editor-specific UI logic.
 
-Optimize first for VS Code without unnecessarily coupling core logic to editor APIs. Preserve source locations, symbols, and provenance. Model actions as verifiable IDE steps such as finding references, opening definitions, inspecting callers or tests, or setting a breakpoint. Never claim files, tests, or commands were checked when they were not; code changes are not the coach’s default result.
+Optimize for IDEs without unnecessarily coupling core logic to a particular editor API. Preserve source locations, symbols, and provenance. Model actions as verifiable IDE steps such as finding references, opening definitions, inspecting callers or tests, or setting a breakpoint. Never claim files, tests, or commands were checked when they were not; code changes are not the coach’s default result.
 
 Treat source code, customer data, tickets, and learning material as potentially confidential. Process or transfer only context required for the current question. Do not log secrets, tokens, personal data, or complete customer data. Prefer structured, minimized, content-free telemetry, and treat the local curriculum as personal development data.
 
