@@ -15,10 +15,9 @@ Despite its product name, the coach does not review code or pull requests. It us
 Before changing product behavior, read:
 
 1. `SKILL.md` — authoritative specification for coaching behavior and output formats.
-2. `references/curriculum.md` — immutable starter template for learning objectives and their initial understanding depth.
-3. `.code-reviewing-tutor/curriculum.md`, when present — the runtime-generated personal learning-progress file; it does not belong in the skill package and must not be versioned.
-4. `agents/openai.yaml` — presentation and activation metadata, not a domain specification.
-5. Existing product, architecture, and decision documents, where relevant.
+2. `references/curriculum.md` — the living curriculum, defining learning objectives and recording their current understanding depth.
+3. `agents/openai.yaml` — presentation and activation metadata, not a domain specification.
+4. Existing product, architecture, and decision documents, where relevant.
 
 Direct user or system instructions override this file. For product behavior, `SKILL.md` is the source of truth unless an explicit documented product decision replaces it.
 
@@ -29,8 +28,8 @@ Direct user or system instructions override this file. For product behavior, `SK
 - Do not systematically search for bugs, weaknesses, risks, or code smells; do not propose unsolicited refactorings, improvements, or replacement implementations.
 - Treat the IDE, especially VS Code, as the primary product surface.
 - Ask exactly one central understanding question at a time, grounded in concrete code, data/control flow, contracts, or framework behavior.
-- Prefer relevant objectives from `.code-reviewing-tutor/curriculum.md` without forcing an unsuitable objective. Update each objective monotonically after a qualified answer and never revisit an objective at `4/4 – understood and transferred` in later sessions.
-- Use `references/curriculum.md` only as a starter template; never change it during coaching. The personal curriculum must contain only objectives and aggregated understanding status—not answers, snippets, customer data, or conversation history.
+- Prefer relevant objectives from `references/curriculum.md` without forcing an unsuitable objective. Update each objective monotonically after a qualified answer and never revisit an objective at `4/4 – understood and transferred` in later sessions.
+- Use `references/curriculum.md` as the living record of objectives and aggregated understanding status. It must not contain answers, snippets, customer data, or conversation history.
 - Assume intrinsic motivation; do not add anti-cheating mechanisms. State assumptions and missing context clearly.
 
 Do not add, without a new product decision: an architecture/planning coach, implementation partner, general debugging coach, code/PR reviewer, reflection/career coach, or hidden tests, traps, or surveillance.
@@ -55,7 +54,7 @@ Treat source code, customer data, tickets, and learning material as potentially 
 
 ## Workflow for coding agents
 
-1. Read the closest `AGENTS.md`, `SKILL.md`, `references/curriculum.md`, the local personal curriculum when applicable, and relevant project documentation.
+1. Read the closest `AGENTS.md`, `SKILL.md`, `references/curriculum.md`, and relevant project documentation.
 2. Inspect existing architecture, tests, scripts, and conventions before introducing a pattern.
 3. Determine the affected product invariant and smallest meaningful change.
 4. Change implementation and tests together.
@@ -67,13 +66,13 @@ Do not invent commands, package managers, or frameworks. If the repository has n
 
 ## Tests and documentation
 
-Test changed domain logic. Cover applicable cases: good functional code; control/data flow, contracts, language/framework mechanisms, and meaningful tests; initialization from the template; relevant and non-relevant objectives; skipping `4/4`; monotonic progress at exactly demonstrated depth; no progress after incorrect, blocked, or explanation-only responses; aggregated-only persistence and write-access fallback; exactly one question; correct classification, help, reduced questions, and direct explanation; precise source references; absent review/finding/merge/quality output and unsolicited changes; incomplete context; and confidentiality in logs/telemetry. Test state transitions, exclusions, and safety boundaries rather than exact model prose.
+Test changed domain logic. Cover applicable cases: good functional code; control/data flow, contracts, language/framework mechanisms, and meaningful tests; curriculum progress updates; relevant and non-relevant objectives; skipping `4/4`; monotonic progress at exactly demonstrated depth; no progress after incorrect, blocked, or explanation-only responses; aggregated-only persistence and write-access fallback; exactly one question; correct classification, help, reduced questions, and direct explanation; precise source references; absent review/finding/merge/quality output and unsolicited changes; incomplete context; and confidentiality in logs/telemetry. Test state transitions, exclusions, and safety boundaries rather than exact model prose.
 
-Update `SKILL.md` for domain-behavior changes and `agents/openai.yaml` for presentation/activation changes. Maintain objectives in `references/curriculum.md` only as sentence-form bullets with initial `Understanding depth: **0/4 – not started**.` The runtime file has the same format but is local and unversioned. Record long-lived architecture decisions in the established decision documentation. Keep examples small, realistic, and free of customer/production data.
+Update `SKILL.md` for domain-behavior changes and `agents/openai.yaml` for presentation/activation changes. Maintain objectives in `references/curriculum.md` only as sentence-form bullets with exactly one `Understanding depth` status. Record long-lived architecture decisions in the established decision documentation. Keep examples small, realistic, and free of customer/production data.
 
 ## Definition of done
 
-A change is done only when it remains within the understanding-focused MVP; aligns with `SKILL.md` (or intentionally updates it); correctly distinguishes template and personal progress; advances only demonstrated understanding and excludes completed objectives; includes relevant tests and successful available checks; introduces no review, finding, merge, or overall-quality assessment; exposes no confidential data or unsupported success claims; retains IDE usability and precise references; and documents known limitations.
+A change is done only when it remains within the understanding-focused MVP; aligns with `SKILL.md` (or intentionally updates it); advances only demonstrated understanding in the curriculum and excludes completed objectives; includes relevant tests and successful available checks; introduces no review, finding, merge, or overall-quality assessment; exposes no confidential data or unsupported success claims; retains IDE usability and precise references; and documents known limitations.
 
 ## Pull-request summary
 

@@ -38,13 +38,7 @@ Internally reconstruct entry point/result, control and data flow, dependencies, 
 
 ## Curriculum and individual progress
 
-`references/curriculum.md` is an immutable starter template. Maintain each learner’s live progress in `.code-reviewing-tutor/curriculum.md` at the root of the opened project:
-
-1. If the file does not exist, create `.code-reviewing-tutor` and copy the template into it.
-2. Then use only the personal file for objective selection and updates.
-3. Never change the template during a coaching session.
-
-The personal file is local and not for the team. Store only sentence-form objectives and aggregated understanding depth—never answers, code excerpts, customer data, or conversation history. If file access is unavailable, do not claim persistence; briefly state which bullet would need manual updating.
+`references/curriculum.md` is the living curriculum. Use it directly for objective selection and progress updates during coaching. Store only sentence-form objectives and aggregated understanding depth—never answers, code excerpts, customer data, or conversation history. If file access is unavailable, do not claim persistence; briefly state which bullet would need manual updating.
 
 Each bullet has exactly one appended status, for example:
 
@@ -122,4 +116,4 @@ Do not mention findings, severities, quality judgments, releases, or improvement
 
 ## Pre-response check
 
-Before every response, verify internally that code remains learning material; no error/weakness, PR, merge, or overall assessment is present; there is exactly one answerable central question; the personal curriculum was loaded/initialized; a relevant unfinished objective was preferred and `4/4` objectives excluded; only demonstrated progress is recorded without unsupported persistence claims; assumptions and missing context are visible; source location is IDE-precise; the explanation is concrete, causal, and level-appropriate; and no unsolicited code change is proposed.
+Before every response, verify internally that code remains learning material; no error/weakness, PR, merge, or overall assessment is present; there is exactly one answerable central question; the living curriculum was loaded; a relevant unfinished objective was preferred and `4/4` objectives excluded; only demonstrated progress is recorded without unsupported persistence claims; assumptions and missing context are visible; source location is IDE-precise; the explanation is concrete, causal, and level-appropriate; and no unsolicited code change is proposed.
