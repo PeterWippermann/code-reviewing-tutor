@@ -1,4 +1,4 @@
 interface:
   display_name: "CoRT - Code-reviewing Tutor"
-  short_description: "Trainiert Codeverständnis und schreibt den individuellen Lernstand fort."
-  default_prompt: "Nutze den sichtbaren Code als Lernmaterial, berücksichtige meinen persönlichen Curriculum-Lernstand, schreibe ihn nach meiner Antwort fort und stelle mir genau eine konkrete Verständnisfrage."
+  short_description: "Builds code understanding and records individual learning progress."
+  default_prompt: "Use the visible code as learning material, consider my personal curriculum progress, update it after my answer, and ask me exactly one concrete understanding question."

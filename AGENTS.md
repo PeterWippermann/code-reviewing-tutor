@@ -1,198 +1,80 @@
 # AGENTS.md
 
-## Geltungsbereich
+## Scope
 
-Diese Anweisungen gelten für das gesamte Verzeichnis, in dem diese Datei liegt, einschließlich aller Unterverzeichnisse. Eine tiefer liegende `AGENTS.md` darf für ihren Teilbaum präzisere Regeln festlegen.
+These instructions apply to this directory and all of its subdirectories. A nested `AGENTS.md` may define more specific rules for its subtree.
 
-## Auftrag des Repositories
+## Repository mission
 
-Dieses Repository entwickelt den **CoRT (Code-reviewing Tutor)** als MVP der „New Joiner Ausbildung“.
+This repository develops the **CoRT (Code-reviewing Tutor)** MVP for onboarding new joiners.
 
-Trotz des bestehenden Produktnamens führt der Coach keine Code- oder Pull-Request-Reviews durch. Er nutzt guten, funktionalen und häufig KI-generierten Code als Lernmaterial und stellt New Joinern gezielte Verständnisfragen direkt in der IDE, insbesondere in VS Code.
+Despite its product name, the coach does not review code or pull requests. It uses good, functional, often AI-generated code as learning material and asks new joiners targeted understanding questions in the IDE, especially VS Code. Its purpose is to help learners explain control flow, data flow, contracts, abstractions, framework mechanisms, tests, and design decisions—not to judge or change code.
 
-Der Coach soll den Lernenden befähigen, Kontrollfluss, Datenfluss, Verträge, Abstraktionen, Framework-Mechanismen, Tests und Entwurfsentscheidungen selbst zu erklären. Das Ziel ist besseres Codeverständnis, nicht bessere Bewertung oder Veränderung des Codes.
+## Authoritative sources
 
-## Verbindliche Quellen
+Before changing product behavior, read:
 
-Vor Änderungen am Produktverhalten zuerst lesen:
+1. `SKILL.md` — authoritative specification for coaching behavior and output formats.
+2. `references/curriculum.md` — immutable starter template for learning objectives and their initial understanding depth.
+3. `.code-reviewing-tutor/curriculum.md`, when present — the runtime-generated personal learning-progress file; it does not belong in the skill package and must not be versioned.
+4. `agents/openai.yaml` — presentation and activation metadata, not a domain specification.
+5. Existing product, architecture, and decision documents, where relevant.
 
-1. `SKILL.md` – maßgebliche Beschreibung der Coaching-Logik und Ausgabeformate.
-2. `references/curriculum.md` – unveränderte Startvorlage der Lernziele und ihrer initialen Verständnistiefe.
-3. `.code-reviewing-tutor/curriculum.md` – zur Laufzeit erzeugte, persönliche Lernstandsdatei des Probanden; sie gehört nicht in das Skill-Paket und soll nicht versioniert werden.
-4. `agents/openai.yaml` – Metadaten für Darstellung und Aktivierung; keine fachliche Spezifikation.
-4. Vorhandene Produkt-, Architektur- und Entscheidungsdokumente im Repository, sofern sie ergänzt werden.
+Direct user or system instructions override this file. For product behavior, `SKILL.md` is the source of truth unless an explicit documented product decision replaces it.
 
-Bei Widersprüchen gelten direkte Nutzer- oder Systemanweisungen vor dieser Datei. Für das Produktverhalten ist `SKILL.md` die fachliche Quelle der Wahrheit, solange keine ausdrücklich dokumentierte Produktentscheidung sie ersetzt.
+## Non-negotiable product decisions
 
-## Nicht verhandelbare Produktentscheidungen
+- Treat existing functional code as learning material and normally assume AI-generated code is correct and appropriate.
+- Do not create code/PR reviews, comments, findings, severities, issue lists, quality assessments, merge recommendations, or production-release decisions.
+- Do not systematically search for bugs, weaknesses, risks, or code smells; do not propose unsolicited refactorings, improvements, or replacement implementations.
+- Treat the IDE, especially VS Code, as the primary product surface.
+- Ask exactly one central understanding question at a time, grounded in concrete code, data/control flow, contracts, or framework behavior.
+- Prefer relevant objectives from `.code-reviewing-tutor/curriculum.md` without forcing an unsuitable objective. Update each objective monotonically after a qualified answer and never revisit an objective at `4/4 – understood and transferred` in later sessions.
+- Use `references/curriculum.md` only as a starter template; never change it during coaching. The personal curriculum must contain only objectives and aggregated understanding status—not answers, snippets, customer data, or conversation history.
+- Assume intrinsic motivation; do not add anti-cheating mechanisms. State assumptions and missing context clearly.
 
-- Vorhandenen, funktionalen Code als Lernmaterial behandeln.
-- Standardmäßig davon ausgehen, dass KI-generierter Code korrekt und angemessen ist.
-- Keine Pull-Request-Reviews oder PR-Kommentare erstellen.
-- Keine Gesamteinschätzung, Qualitätsbewertung, Merge-Empfehlung oder Produktionsfreigabe abgeben.
-- Nicht systematisch nach Fehlern, Schwachstellen, Risiken oder Code Smells suchen.
-- Keine Findings, Schweregrade oder Beanstandungslisten erzeugen.
-- Keine ungefragten Refactorings, Verbesserungen oder Ersatzimplementierungen vorschlagen.
-- Die IDE, vor allem VS Code, als primäre Produktoberfläche behandeln.
-- Genau eine zentrale Verständnisfrage auf einmal stellen.
-- Fragen an konkretem Code, Datenfluss, Kontrollfluss, Verträgen oder Framework-Verhalten verankern.
-- Relevante Lernziele aus dem persönlichen `.code-reviewing-tutor/curriculum.md` bei der Fragenauswahl bevorzugen, ohne unpassende Lernziele zu erzwingen.
-- Die Verständnistiefe je Curriculum-Lernziel nach jeder qualifizierten Antwort monoton fortschreiben.
-- Lernziele mit `4/4 – verstanden und übertragen` in späteren Sitzungen nicht mehr behandeln.
-- `references/curriculum.md` nur als Startvorlage verwenden und während einer Coaching-Sitzung nicht verändern.
-- Im persönlichen Curriculum keine Antworten, Codeausschnitte, Kundendaten oder Gesprächsverläufe speichern.
-- Intrinsische Lernmotivation voraussetzen; keine Anti-Cheating-Mechanismen einbauen.
-- Annahmen und fehlenden Kontext sichtbar kennzeichnen.
+Do not add, without a new product decision: an architecture/planning coach, implementation partner, general debugging coach, code/PR reviewer, reflection/career coach, or hidden tests, traps, or surveillance.
 
-Nicht ohne neue Produktentscheidung in den MVP aufnehmen:
+## Required learner experience
 
-- Planungs- oder Architekturcoach,
-- Implementierungs- oder Denkpartner für die initiale Lösung,
-- allgemeiner Debugging-Coach,
-- Code- oder Pull-Request-Reviewer,
-- Reflexions- oder Karriere-Coach,
-- Lernkontrolle durch versteckte Tests, Fallen oder Überwachung.
+- Name file, symbol, and line range as precisely as possible; choose a small coherent code excerpt.
+- Start with neutral context and exactly one question about behavior, data flow, contracts, abstractions, framework mechanisms, or tests—never errors or quality judgment.
+- Adapt the next question to the next useful understanding depth. After an answer, persist only the highest depth actually demonstrated. Explain the mechanism after a serious attempt; reduce the question or explain directly if blocked or explicitly requested.
+- Optionally finish each loop with a small verifiable IDE action. Confirm correct reasoning specifically, not mere agreement. At the end, summarize learning gained, never code quality.
+- Use the learner's language for user-facing coaching; default to English if it cannot be inferred. Keep code, paths, symbols, and persisted status values stable as specified by `SKILL.md`.
 
-## Gewünschtes Nutzererlebnis
+## Development principles
 
-Bei Änderungen an Prompts, Orchestrierung oder UI diese Regeln erhalten:
+Make the smallest traceable change that fully achieves the requested product outcome. Follow existing repository conventions; do not introduce dependency changes, architectural rewrites, or abstractions without a concrete variation or testing need.
 
-- Datei, Symbol und Zeilenbereich möglichst präzise nennen.
-- Einen kleinen, zusammenhängenden Codeausschnitt als Lerngegenstand wählen.
-- Mit neutralem Kontext und genau einer Verständnisfrage beginnen.
-- Fragen zu Verhalten, Datenfluss, Verträgen, Abstraktionen, Framework-Mechanismen oder Tests stellen.
-- Passende, noch nicht verstandene Curriculum-Lernziele bei der Auswahl berücksichtigen.
-- Die nächste Frage an der nächsthöheren sinnvollen Verständnistiefe ausrichten.
-- Nach der Antwort die höchste tatsächlich nachgewiesene Verständnistiefe speichern.
-- Gute und funktionale Konstruktionen bewusst als Lerngelegenheiten verwenden.
-- Keine Frage nach Fehlern oder Qualitätsurteilen stellen.
-- Nach einem ernsthaften Denkversuch konkret einordnen und den Mechanismus erklären.
-- Bei Blockade die Frage verkleinern oder direkt erklären.
-- Bei ausdrücklichem Wunsch eine direkte Erklärung geben, statt künstlich weiterzufragen.
-- Jede Lernschleife optional mit einer kleinen prüfbaren IDE-Aktion abschließen.
-- Korrekte Herleitungen konkret bestätigen; bloße Zustimmung nicht pauschal loben.
-- Am Ende nur den Lerngewinn zusammenfassen, nicht die Codequalität.
+Keep these concerns separate where the architecture permits: IDE/file/Git context; control- and data-flow reconstruction; learning-objective selection and curriculum lookup; one-question generation; answer evaluation and calibration; monotonic learning-progress persistence; output formatting; provider/model integration; and telemetry/persistence. Do not hide product rules such as “one question at a time” or “consider the curriculum” in VS-Code-specific UI logic.
 
-## Entwicklungsgrundsätze
+Optimize first for VS Code without unnecessarily coupling core logic to editor APIs. Preserve source locations, symbols, and provenance. Model actions as verifiable IDE steps such as finding references, opening definitions, inspecting callers or tests, or setting a breakpoint. Never claim files, tests, or commands were checked when they were not; code changes are not the coach’s default result.
 
-### Änderungen klein und nachvollziehbar halten
+Treat source code, customer data, tickets, and learning material as potentially confidential. Process or transfer only context required for the current question. Do not log secrets, tokens, personal data, or complete customer data. Prefer structured, minimized, content-free telemetry, and treat the local curriculum as personal development data.
 
-- Die kleinste Änderung umsetzen, die den gewünschten Produktnutzen vollständig erreicht.
-- Keine unaufgeforderten Abhängigkeitswechsel oder Architekturumbauten durchführen.
-- Bestehende Konventionen des Repositories vor persönlichen Präferenzen verwenden.
-- Neue Abstraktionen erst einführen, wenn ein konkreter Variations- oder Testbedarf sichtbar ist.
+## Workflow for coding agents
 
-### Fachlogik von Integrationen trennen
+1. Read the closest `AGENTS.md`, `SKILL.md`, `references/curriculum.md`, the local personal curriculum when applicable, and relevant project documentation.
+2. Inspect existing architecture, tests, scripts, and conventions before introducing a pattern.
+3. Determine the affected product invariant and smallest meaningful change.
+4. Change implementation and tests together.
+5. Run available repository-native format, lint, type, unit, and integration checks.
+6. Check the change against product boundaries and the IDE experience.
+7. Briefly document the result, checks run, limitations, and deliberately unaddressed work.
 
-Soweit die vorhandene Architektur es zulässt, folgende Verantwortlichkeiten getrennt halten:
+Do not invent commands, package managers, or frameworks. If the repository has no runnable checks, say so and describe manual verification.
 
-- Erfassung von IDE-, Datei- und Git-Kontext,
-- Rekonstruktion von Kontroll- und Datenfluss,
-- Auswahl eines Lernziels einschließlich Curriculum- und Lernstandsabgleich,
-- Erzeugung genau einer Verständnisfrage mit definierter Zielstufe,
-- Auswertung und Kalibrierung anhand der Antwort,
-- monotone Fortschreibung des persönlichen Lernstands,
-- Ausgabeformatierung,
-- Anbieter- oder Modellintegration,
-- Telemetrie und sonstige Persistenz.
+## Tests and documentation
 
-Produktregeln wie „eine Frage auf einmal“, „Curriculum berücksichtigen“ oder „keine Qualitätsbewertung“ nicht in VS-Code-spezifischer UI-Logik verstecken.
+Test changed domain logic. Cover applicable cases: good functional code; control/data flow, contracts, language/framework mechanisms, and meaningful tests; initialization from the template; relevant and non-relevant objectives; skipping `4/4`; monotonic progress at exactly demonstrated depth; no progress after incorrect, blocked, or explanation-only responses; aggregated-only persistence and write-access fallback; exactly one question; correct classification, help, reduced questions, and direct explanation; precise source references; absent review/finding/merge/quality output and unsolicited changes; incomplete context; and confidentiality in logs/telemetry. Test state transitions, exclusions, and safety boundaries rather than exact model prose.
 
-### IDE-Nähe bewahren
+Update `SKILL.md` for domain-behavior changes and `agents/openai.yaml` for presentation/activation changes. Maintain objectives in `references/curriculum.md` only as sentence-form bullets with initial `Understanding depth: **0/4 – not started**.` The runtime file has the same format but is local and unversioned. Record long-lived architecture decisions in the established decision documentation. Keep examples small, realistic, and free of customer/production data.
 
-- VS Code als erste Integration optimieren, ohne die Kernlogik unnötig an einzelne Editor-APIs zu koppeln.
-- Fundstellen, Symbole und Quellprovenienz durch die Verarbeitung erhalten.
-- Aktionen als überprüfbare IDE-Schritte modellieren, etwa Verwendungen suchen, Definition öffnen, Aufrufer ansehen, Test lesen oder Breakpoint setzen.
-- Nicht behaupten, Dateien, Tests oder Befehle geprüft zu haben, wenn das System sie nicht tatsächlich ausgeführt hat.
-- Codeänderungen nicht zum Standardergebnis des Coaches machen.
+## Definition of done
 
-### Sicherheit und Vertraulichkeit
+A change is done only when it remains within the understanding-focused MVP; aligns with `SKILL.md` (or intentionally updates it); correctly distinguishes template and personal progress; advances only demonstrated understanding and excludes completed objectives; includes relevant tests and successful available checks; introduces no review, finding, merge, or overall-quality assessment; exposes no confidential data or unsupported success claims; retains IDE usability and precise references; and documents known limitations.
 
-- Quellcode, Kundendaten, Tickets und Lerninhalte als potenziell vertraulich behandeln.
-- Nur für die aktuelle Verständnisfrage erforderlichen Kontext verarbeiten oder übertragen.
-- Geheimnisse, Tokens, personenbezogene Daten und vollständige Kundendaten nicht protokollieren.
-- Bei Telemetrie bevorzugt strukturierte, minimierte und nicht inhaltsbezogene Ereignisse verwenden.
-- Die lokale Lernstandsdatei als personenbezogenes Entwicklungsdatum behandeln und nicht ohne ausdrücklichen Zweck teilen oder versionieren.
+## Pull-request summary
 
-## Arbeitsablauf für Coding Agents
-
-1. Die nächstgelegene `AGENTS.md`, `SKILL.md`, `references/curriculum.md`, gegebenenfalls `.code-reviewing-tutor/curriculum.md` und relevante Projektdokumentation lesen.
-2. Bestehende Architektur, Tests, Skripte und Konventionen untersuchen, bevor neue Muster eingeführt werden.
-3. Die betroffene Produktinvariante und den kleinsten sinnvollen Änderungsumfang bestimmen.
-4. Implementierung und Tests gemeinsam ändern.
-5. Vorhandene Format-, Lint-, Typ-, Unit- und Integrationstests mit den repositoryeigenen Befehlen ausführen.
-6. Die Änderung gegen die Produktgrenzen und das IDE-Nutzererlebnis prüfen.
-7. Ergebnis, ausgeführte Prüfungen, bekannte Einschränkungen und nicht bearbeitete Punkte knapp dokumentieren.
-
-Keine Befehle, Paketmanager oder Frameworks erfinden. Wenn das Repository noch keine ausführbaren Prüfungen bereitstellt, dies offen benennen und die manuell durchgeführte Verifikation beschreiben.
-
-## Testanforderungen
-
-Neue oder geänderte Fachlogik durch Tests absichern. Je nach Änderung insbesondere folgende Fälle berücksichtigen:
-
-- Verständnisfrage zu gutem und funktionalem Code,
-- Frage zu Kontrollfluss oder Datenfluss,
-- Frage zu einem Typ- oder Funktionsvertrag,
-- Frage zu einer Sprach- oder Framework-Mechanik,
-- Initialisierung von `.code-reviewing-tutor/curriculum.md` aus der Vorlage,
-- Auswahl eines passenden, noch nicht verstandenen Curriculum-Lernziels,
-- Überspringen eines nicht passenden Curriculum-Lernziels,
-- Überspringen eines Lernziels mit `4/4`,
-- Fortschreibung auf die Zielstufe bei einer korrekten Antwort,
-- Fortschreibung nur auf eine belegte niedrigere Stufe bei einer teilweise korrekten Antwort,
-- keine Fortschreibung bei falscher Antwort, Blockade oder bloßer Erklärung,
-- keine Absenkung eines bereits erreichten Lernstands,
-- Speicherung ausschließlich des aggregierten Status ohne Antwort- oder Codeinhalt,
-- transparenter Fallback bei fehlendem Schreibzugriff,
-- Frage zu einem aussagekräftigen Test,
-- genau eine zentrale Frage pro Interaktionsschritt,
-- korrekte Einordnung einer richtigen Antwort,
-- Hilfestellung bei einer teilweise richtigen oder falschen Antwort,
-- Verkleinerung der Frage bei Blockade,
-- direkte Erklärung auf ausdrücklichen Wunsch,
-- präzise Datei- und Zeilenreferenzen,
-- keine Finding-, Schweregrad- oder Qualitätsausgabe,
-- keine PR- oder Merge-Bewertung,
-- keine ungefragte Codeänderung,
-- fehlender oder unvollständiger Kontext,
-- Schutz vertraulicher Inhalte in Logs oder Telemetrie.
-
-Tests nicht nur auf exakte Modellformulierungen ausrichten. Bevorzugt überprüfbare Strukturen, Zustandsübergänge, Ausschlussregeln und Sicherheitsgrenzen testen.
-
-## Dokumentationsregeln
-
-- Änderungen am fachlichen Verhalten in `SKILL.md` nachführen.
-- Lernziele ausschließlich als Stichpunkte in Satzform in `references/curriculum.md` pflegen und mit `Verständnistiefe: **0/4 – unbearbeitet**.` initialisieren.
-- Die Laufzeitdatei `.code-reviewing-tutor/curriculum.md` hat dasselbe Format, wird aber pro Proband lokal fortgeschrieben und nicht in das Skill-Paket aufgenommen.
-- Änderungen an Darstellung oder Aktivierung in `agents/openai.yaml` nachführen.
-- Architekturentscheidungen mit langfristiger Wirkung in einem passenden Entscheidungsdokument festhalten, sobald eine solche Struktur im Repository existiert.
-- Beispiele klein, realistisch und frei von Kunden- oder Produktionsdaten halten.
-- Bestehende Sprache und Terminologie eines Dokuments beibehalten.
-
-## Definition of Done
-
-Eine Änderung ist erst abgeschlossen, wenn:
-
-- sie innerhalb des verständnisorientierten MVPs liegt,
-- das Verhalten mit `SKILL.md` übereinstimmt oder dort bewusst aktualisiert wurde,
-- die Curriculum-Vorlage und der persönliche Lernstand korrekt unterschieden werden,
-- Fortschritt nur auf Basis nachgewiesener Verständnistiefe fortgeschrieben wird,
-- verstandene Lernziele aus späteren Sitzungen ausgeschlossen werden,
-- relevante Tests ergänzt oder angepasst wurden,
-- verfügbare Qualitätsprüfungen erfolgreich ausgeführt wurden,
-- keine Review-, Finding-, Merge- oder Gesamtbewertung eingeführt wurde,
-- keine vertraulichen Daten oder unbelegten Erfolgsbehauptungen eingeführt wurden,
-- IDE-Nutzbarkeit und konkrete Quellreferenzen erhalten bleiben,
-- bekannte Einschränkungen dokumentiert sind.
-
-## Pull-Request-Zusammenfassung für Repository-Änderungen
-
-Bei einem Pull Request an diesem Repository knapp angeben:
-
-- welches Nutzer- oder Lernproblem gelöst wird,
-- welche sichtbare Verhaltensänderung entsteht,
-- welche Tests und Prüfungen ausgeführt wurden,
-- welche Risiken oder Annahmen verbleiben,
-- welche bewusst nicht umgesetzten Themen außerhalb des MVPs liegen.
-
-Diese Regel betrifft die Entwicklung des Produkts. Sie bedeutet nicht, dass das Produkt selbst Pull Requests von Nutzern reviewt.
+For repository pull requests, state briefly: the user/learning problem solved, visible behavior change, tests/checks run, remaining risks or assumptions, and deliberately excluded out-of-MVP work. This applies to developing the product; it does not mean the product reviews users’ pull requests.
