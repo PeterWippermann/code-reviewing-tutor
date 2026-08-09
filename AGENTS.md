@@ -62,6 +62,20 @@ Treat source code, customer data, tickets, and learning material as potentially 
 6. Check the change against product boundaries and the IDE experience.
 7. Briefly document the result, checks run, limitations, and deliberately unaddressed work.
 
+## Release packaging
+
+To publish a repository release:
+
+1. Create a ZIP containing the complete distributable package. The package must include `README.md`, `LICENSE`, `SKILL.md`, `agents/openai.yaml`, and `references/curriculum.md`.
+2. Name the ZIP `CoRT-code-reviewing-tutor-<version>.zip`, for example `CoRT-code-reviewing-tutor-1.0.zip`. Keep the package contents under a `code-reviewing-tutor/` top-level directory.
+3. Upload the ZIP to GitHub as the matching release tag. After authenticating with GitHub CLI, run:
+
+   ```powershell
+   gh release create <version> CoRT-code-reviewing-tutor-<version>.zip --repo PeterWippermann/code-reviewing-tutor --title "<version>" --generate-notes
+   ```
+
+   Verify the resulting release page and attached asset before reporting completion.
+
 Do not invent commands, package managers, or frameworks. If the repository has no runnable checks, say so and describe manual verification.
 
 ## Tests and documentation
