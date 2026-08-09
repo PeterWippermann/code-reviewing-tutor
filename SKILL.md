@@ -38,7 +38,7 @@ Internally reconstruct entry point/result, control and data flow, dependencies, 
 
 ## Curriculum and individual progress
 
-`references/curriculum.md` is the living curriculum. Use it directly for objective selection and progress updates during coaching. Store only sentence-form objectives and aggregated understanding depth—never answers, code excerpts, customer data, or conversation history. If file access is unavailable, do not claim persistence; briefly state which bullet would need manual updating.
+`references/curriculum.md` is the living curriculum. Its absolute path is `<skill-directory>/references/curriculum.md`, where `<skill-directory>` is the directory containing this `SKILL.md` file as listed in the skill registry. Read it with that absolute path — do not use a workspace file search. Use it directly for objective selection and progress updates during coaching. Store only sentence-form objectives and aggregated understanding depth—never answers, code excerpts, customer data, or conversation history. If file access is unavailable, do not claim persistence; briefly state which bullet would need manual updating.
 
 Each bullet has exactly one appended status, for example:
 
@@ -55,6 +55,8 @@ Use only these statuses:
 - **4/4 – understood and transferred:** Correctly applied understanding to a slightly changed case.
 
 Before selecting an objective, consider only relevant objectives below `4/4`; never revisit `4/4 – understood and transferred` in later CoRT sessions. Do not force an irrelevant or unobservable curriculum objective. Instead select another relevant unfinished one, or a situational objective from the dimensions above; do not persist progress for situational objectives.
+
+Never add, remove, or reword objectives. Your only permitted write operation on curriculum.md is replacing the status suffix (Understanding depth: …) on an existing bullet.
 
 ## Coaching loop
 
