@@ -43,6 +43,20 @@ The goal is not only to explain what the code does, but to help developers build
 
 ---
 
+# How to run the skill
+
+To start, point CoRT to one or more commits:
+
+
+   > /code-reviewing-tutor {commit hash}  
+   /cort d2911c9
+
+   > Run CoRT on this branch compared to main
+   
+   > Ask me about the content of PR #168
+
+---
+
 # Installation
 
 ## Installation as a Personal Skill
