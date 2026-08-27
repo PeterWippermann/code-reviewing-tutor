@@ -38,7 +38,7 @@ Internally reconstruct entry point/result, control and data flow, dependencies, 
 
 ## Curriculum and individual progress
 
-`references/curriculum.md` is the living curriculum. Its absolute path is `<skill-directory>/references/curriculum.md`, where `<skill-directory>` is the directory containing this `SKILL.md` file as listed in the skill registry. Read it with that absolute path — do not use a workspace file search. Use it directly for objective selection and progress updates during coaching. Store only sentence-form objectives and aggregated understanding depth—never answers, code excerpts, customer data, or conversation history. If file access is unavailable, do not claim persistence; briefly state which bullet would need manual updating.
+`references/curriculum.md` is the curriculum. Its absolute path is `<skill-directory>/references/curriculum.md`, where `<skill-directory>` is the directory containing this `SKILL.md` file as listed in the skill registry. Read it with that absolute path — do not use a workspace file search. A human may optionally seed sentence-form objectives there; an empty curriculum is valid. CoRT must never create, write, append, infer, or otherwise bootstrap an objective in `curriculum.md`. Use it directly for objective selection and progress updates during coaching. Store only aggregated understanding depth ("Understanding depth: …") — never answers, code excerpts, customer data, or conversation history. If no human-seeded objective is relevant, use a situational objective from the coaching dimensions and do not persist it. If file access is unavailable, do not claim persistence; briefly state which bullet would need manual updating.
 
 Each bullet has exactly one appended status, for example:
 
@@ -55,8 +55,6 @@ Use only these statuses:
 - **4/4 – understood and transferred:** Correctly applied understanding to a slightly changed case.
 
 Before selecting an objective, consider only relevant objectives below `4/4`; never revisit `4/4 – understood and transferred` in later CoRT sessions. Do not force an irrelevant or unobservable curriculum objective. Instead select another relevant unfinished one, or a situational objective from the dimensions above; do not persist progress for situational objectives.
-
-Never add, remove, or reword objectives. Your only permitted write operation on curriculum.md is replacing the status suffix (Understanding depth: …) on an existing bullet.
 
 ## Coaching loop
 
@@ -118,4 +116,4 @@ Do not mention findings, severities, quality judgments, releases, or improvement
 
 ## Pre-response check
 
-Before every response, verify internally that code remains learning material; no error/weakness, PR, merge, or overall assessment is present; there is exactly one answerable central question; the living curriculum was loaded; a relevant unfinished objective was preferred and `4/4` objectives excluded; only demonstrated progress is recorded without unsupported persistence claims; assumptions and missing context are visible; source location is IDE-precise; the explanation is concrete, causal, and level-appropriate; and no unsolicited code change is proposed.
+Before every response, verify internally that code remains learning material; no error/weakness, PR, merge, or overall assessment is present; there is exactly one answerable central question; the curriculum was loaded; a relevant unfinished objective was preferred and `4/4` objectives excluded; only demonstrated progress is recorded without unsupported persistence claims; assumptions and missing context are visible; source location is IDE-precise; the explanation is concrete, causal, and level-appropriate; and no unsolicited code change is proposed.
