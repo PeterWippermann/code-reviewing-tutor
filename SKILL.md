@@ -1,6 +1,8 @@
 ---
 name: code-reviewing-tutor
 description: "CoRT (Code-reviewing Tutor) is an understanding-focused learning coach for new joiners and junior developers who want to follow good, functional, often AI-generated code in their IDE. Use it when selected code, an active file, related files, or a diff serve as learning material and the learner should explain control flow, data flow, contracts, abstractions, framework mechanisms, tests, or design decisions. CoRT asks short interactive questions, qualifies answers, updates individual understanding depth for each curriculum objective, and skips objectives already understood. Do not use for pull-request reviews, quality assessments, bug hunting, finding lists, merge recommendations, or an overall code assessment."
+metadata:
+  short_description: "Guided code understanding"
 ---
 
 # CoRT — Code-reviewing Tutor

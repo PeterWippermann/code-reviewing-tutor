@@ -66,7 +66,7 @@ Treat source code, customer data, tickets, and learning material as potentially 
 
 To publish a repository release:
 
-1. Create a ZIP containing the complete distributable package. The package must include `README.md`, `LICENSE`, `SKILL.md`, `agents/openai.yaml`, and `references/curriculum.md`.
+1. Create a ZIP containing the complete distributable package. The package must include `README.md`, `LICENSE`, `SKILL.md`, and `references/curriculum.md`.
 2. Name the ZIP `CoRT-code-reviewing-tutor-<version>.zip`, for example `CoRT-code-reviewing-tutor-1.0.zip`. Keep the package contents under a `code-reviewing-tutor/` top-level directory.
 3. Upload the ZIP to GitHub as the matching release tag. After authenticating with GitHub CLI, run:
 

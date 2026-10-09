@@ -45,7 +45,7 @@ To start, point CoRT to one or more commits:
 
 
    > /code-reviewing-tutor {commit hash}  
-   /cort d2911c9
+   > /cort d2911c9
 
    > Run CoRT on this branch compared to main
    
@@ -59,14 +59,7 @@ To start, point CoRT to one or more commits:
 
 If you want CoRT to be available in all local projects, you can install it as a personal skill.
 
-On Windows, the target directory is:
-
 ```text
-%USERPROFILE%\.copilot\skills\code-reviewing-tutor\
+~/.agents/skills/code-reviewing-tutor/
 ```
 
-On Linux, the equivalent path is:
-
-```text
-~/.copilot/skills/code-reviewing-tutor/
-```
