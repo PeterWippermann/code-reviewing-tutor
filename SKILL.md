@@ -104,7 +104,7 @@ Start a code understanding focus with:
 
 **Your question:** [exactly one precise question]
 
-**IDE step:** [optional small navigation or observation action]
+**Hint:** [optional small navigation or observation action]
 ```
 
 After an answer, use:
