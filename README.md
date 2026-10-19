@@ -66,3 +66,16 @@ If you want CoRT to be available in all local projects, you can install it as a 
 ~/.agents/skills/code-reviewing-tutor/
 ```
 
+---
+
+# How to build a curriculum
+
+For curriculum mode, add short learning objectives as Markdown bullets in the installed skill's `references/curriculum.md`, for example:
+
+```markdown
+- Understand async/await.
+- Trace dependency injection.
+- Know HTTP methods and return codes.
+- Explain features of hexagonal architecture.
+```
+

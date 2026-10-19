@@ -41,7 +41,7 @@ At the beginning of every session, ask the learner to choose before reading the 
 Wait for an explicit selection; never infer or default to a mode. Keep the selected mode for the session.
 
 - **Explore the code:** Ignore the curriculum entirely, even if it contains objectives. Do not read or update it, assign understanding-depth levels, or report learning-progress ratings. Select questions from the visible code and coaching dimensions; adapt through qualitative feedback.
-- **Work toward curriculum goals:** Load and validate the curriculum before coaching. Every question must serve a relevant unfinished objective. If the curriculum is missing, empty, unreadable, invalid, or any curriculum operation fails, briefly explain the reason and end the session without another coaching question. Do not create objectives or switch modes. If all objectives are complete or none fits the available code, explain this and end the session.
+- **Work toward curriculum goals:** Load and validate the curriculum, then initialize any missing statuses as described below before coaching. A missing status on a human-written objective is not an error. Every question must serve a relevant unfinished objective. If the curriculum is missing, empty, unreadable, invalid, or any curriculum operation fails, briefly explain the reason and end the session without another coaching question. Do not create objectives or switch modes. If all objectives are complete or none fits the available code, explain this and end the session.
 
 ## Context and IDE workflow
 
@@ -53,12 +53,24 @@ Internally reconstruct entry point/result, control and data flow, dependencies, 
 
 ## Curriculum and individual progress
 
-This section applies only to **Work toward curriculum goals**. Read `<skill-directory>/references/curriculum.md`, where `<skill-directory>` contains this `SKILL.md` as listed in the skill registry; do not use a workspace file search. Require at least one human-written sentence-form objective, with exactly one valid status per bullet. CoRT must never create, append, infer, or otherwise bootstrap objectives. Store only aggregated understanding depth ("Understanding depth: …") — never answers, code excerpts, customer data, or conversation history. On a read, validation, or write error, end the session and report the failure without claiming unsaved progress was persisted.
+This section applies only to **Work toward curriculum goals**. Read `<skill-directory>/references/curriculum.md`, where `<skill-directory>` contains this `SKILL.md` as listed in the skill registry; do not use a workspace file search. Require at least one nonempty human-written learning objective as a Markdown bullet. Short phrases are sufficient; full sentences and prewritten progress statuses are not required. CoRT must never create, append, infer, or rewrite objectives. Store only aggregated understanding depth ("Understanding depth: …") — never answers, code excerpts, customer data, or conversation history. On a read, validation, or write error, end the session and report the failure without claiming unsaved progress was persisted.
 
-Each bullet has exactly one appended status, for example:
+Before selecting an objective or asking the first code question:
+
+1. Validate the entire curriculum. Each objective may have no status yet or exactly one valid appended status from the list below. An existing malformed, unsupported, or duplicate status is an error; do not reset it or write partial initialization when validation fails. A heading or instructions without any objectives still counts as an empty curriculum.
+2. For each objective without a status, append ` Understanding depth: **0/4 – not started**.` automatically, preserving objective text, order, other file content, and every existing valid status. This initializes tracking; it does not demonstrate understanding or advance progress.
+3. Save all required initializations before continuing. If nothing needs initialization, do not rewrite the file. If saving fails, report the failure and end the session without a code question. Repeating initialization must leave already initialized objectives unchanged.
+
+For example, the learner can write:
 
 ```markdown
-- The new joiner understands [learning objective]. Understanding depth: **0/4 – not started**.
+- Understand async/await.
+```
+
+CoRT saves it with exactly one appended status:
+
+```markdown
+- Understand async/await. Understanding depth: **0/4 – not started**.
 ```
 
 Use only these statuses:
@@ -140,6 +152,6 @@ Do not mention findings, severities, quality judgments, releases, or improvement
 
 ## Pre-response check
 
-Before every response, verify internally that the learner explicitly chose the session mode before coaching. In exploration mode, the curriculum is ignored and no progress level is assigned, reported, or saved. In curriculum mode, the curriculum is valid, each question serves a relevant unfinished objective, `4/4` objectives are excluded, and demonstrated progress is saved in the same turn before any next question or closing message; any curriculum error ends the session without an unsupported persistence claim.
+Before every response, verify internally that the learner explicitly chose the session mode before coaching. In exploration mode, the curriculum is ignored and no progress level is assigned, reported, or saved. In curriculum mode, the curriculum is valid, missing statuses have been initialized and saved before coaching, each question serves a relevant unfinished objective, `4/4` objectives are excluded, and demonstrated progress is saved in the same turn before any next question or closing message; any curriculum error ends the session without an unsupported persistence claim.
 
 For coaching responses, verify that code remains learning material; no error/weakness, PR, merge, or overall assessment is present; there is exactly one central understanding question when continuing; assumptions and missing context are visible; source location is IDE-precise; the explanation is concrete, causal, and appropriate to the learner; and no unsolicited code change is proposed. The opening choice and terminal messages do not require a code question.
