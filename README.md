@@ -26,15 +26,18 @@ CoRT's goal is not only to make developers explain what the code does, but to he
 
 CoRT runs directly inside the developer’s IDE.
 
-Depending on the setup, CoRT may choose the relevant subject area from a predefined curriculum. If a curriculum is used, CoRT can also track learning progress across topics and help guide the next steps in the learning journey.
+Each session begins with a choice:
+
+* **Explore the code:** follow questions grounded in the code, without learning goals, progress ratings, or curriculum access.
+* **Work toward curriculum goals:** focus on relevant unfinished objectives in `references/curriculum.md` and save demonstrated progress. An empty, missing, invalid, or inaccessible curriculum, or an error updating it, ends the session. The session also ends when no relevant unfinished objective remains.
 
 In practice, CoRT:
 
 * selects relevant code excerpts
 * asks understanding-oriented questions
 * adapts the depth of its questions to the developer’s level
-* uses a curriculum when available to structure the learning path
-* tracks progress across topics where configured
+* follows the learner’s chosen session mode
+* tracks progress only in curriculum mode
 * helps turn code changes into durable understanding
 
 ---
