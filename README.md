@@ -60,8 +60,14 @@ To start, point CoRT to one or more commits:
 
 ## Installation as a Personal Skill
 
-If you want CoRT to be available in all local projects, you can install it as a personal skill.
+If you want CoRT to be available in all local projects, you can install it as a global skill.
 
+Use this command:
+```text
+npx skills add https://github.com/PeterWippermann/code-reviewing-tutor.git
+```
+
+Or copy the skill to this directory:
 ```text
 ~/.agents/skills/code-reviewing-tutor/
 ```
